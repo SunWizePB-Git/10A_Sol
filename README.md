@@ -1,2 +1,2 @@
-# 10A_Sol
+# solNew
 Skeleton for new charge controller comms
