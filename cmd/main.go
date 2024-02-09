@@ -7,7 +7,7 @@ package main
 import (
 	"github.com/merliot/dean"
 	"github.com/merliot/device/runner"
-	"github.com/SunWizePB-Git/solNew"
+	solNew "github.com/SunWizePB-Git/solNew"
 )
 
 var (
