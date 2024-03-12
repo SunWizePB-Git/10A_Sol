@@ -10,10 +10,8 @@ import (
 	"github.com/merliot/device/modbus"
 )
 
-//go:embed css go.mod html js
+//go:embed css go.mod html js template
 var fs embed.FS
-
-//template NEED TO ADD THIS
 
 const (
 	regBattInfo  = 0x3045
