@@ -51,36 +51,6 @@ class SolNew extends WebSocketController {
 		}
 	}
 
-	showAlarms() {
-		switch (this.viewMode) {
-		case ViewMode.ViewFull:
-			var list = ""
-			for (let i = 0; i < this.state.Controller.Alarms.length; i++) {
-				list += "\r\n    \u26A0 " + this.state.Controller.Alarms[i]
-			}
-			return list
-			break;
-		}
-	}
-
-	showController() {
-		switch (this.viewMode) {
-		case ViewMode.ViewFull:
-			var ta = document.getElementById("controller")
-			ta.value = ""
-			ta.value += "* Temp (C):                  " + this.state.Controller.Temp + "\r\n"
-			ta.value += "* Alarms:                    "
-			if (this.state.Controller.Alarms === null) {
-				ta.rows = 2
-				ta.value += "<none>"
-			} else {
-				ta.rows = 3 + this.state.Controller.Alarms.length
-				ta.value += this.showAlarms()
-			}
-			break;
-		}
-	}
-
 	showBattery() {
 		switch (this.viewMode) {
 		case ViewMode.ViewFull:
@@ -131,41 +101,6 @@ class SolNew extends WebSocketController {
 		}
 	}
 
-	showDaily() {
-		switch (this.viewMode) {
-		case ViewMode.ViewFull:
-			var ta = document.getElementById("daily")
-			ta.value = ""
-			ta.value += "Battery Min Voltage (V):     " + this.state.Daily.BattMinVolts + "\r\n"
-			ta.value += "Battery Max Voltage (V):     " + this.state.Daily.BattMaxVolts + "\r\n"
-			ta.value += "Charging Max Current (A):    " + this.state.Daily.ChargeMaxAmps + "\r\n"
-			ta.value += "Discharging Max Current (A): " + this.state.Daily.DischargeMaxAmps + "\r\n"
-			ta.value += "Charging Max Power (W):      " + this.state.Daily.ChargeMaxWatts + "\r\n"
-			ta.value += "Disharging Max Power (W):    " + this.state.Daily.DischargeMaxWatts + "\r\n"
-			ta.value += "Charge Current (Ah):         " + this.state.Daily.ChargeAmpHrs + "\r\n"
-			ta.value += "Discharge Current (Ah):      " + this.state.Daily.DischargeAmpHrs + "\r\n"
-			ta.value += "Power Generated (W):         " + this.state.Daily.GenPowerWatts + "\r\n"
-			ta.value += "Power Consumed (W):          " + this.state.Daily.ConPowerWatts
-			break;
-		}
-	}
-
-	showHistorical() {
-		switch (this.viewMode) {
-		case ViewMode.ViewFull:
-			var ta = document.getElementById("historical")
-			ta.value = ""
-			ta.value += "Total Operating Days:        " + this.state.Historical.OpDays + "\r\n"
-			ta.value += "Total Batt Over Discharges:  " + this.state.Historical.OverDischarges + "\r\n"
-			ta.value += "Total Battery Full Charges:  " + this.state.Historical.FullCharges + "\r\n"
-			ta.value += "Total Charge Current (Ah):   " + this.state.Historical.ChargeAmpHrs + "\r\n"
-			ta.value += "Total Discharge Cur (Ah):    " + this.state.Historical.DischargeAmpHrs + "\r\n"
-			ta.value += "Total Power Generated (W):   " + this.state.Historical.GenPowerWatts + "\r\n"
-			ta.value += "Total Power Consumed (W):    " + this.state.Historical.ConPowerWatts
-			break;
-		}
-	}
-
 	handle(msg) {
 		switch(msg.Path) {
 		case "update/status":
@@ -175,10 +110,6 @@ class SolNew extends WebSocketController {
 		case "update/system":
 			this.state.System = msg.System
 			this.showSystem()
-			break
-		case "update/controller":
-			this.state.Controller = msg.Controller
-			this.showController()
 			break
 		case "update/battery":
 			this.state.Battery = msg.Battery
@@ -191,14 +122,6 @@ class SolNew extends WebSocketController {
 		case "update/solar":
 			this.state.Solar = msg.Solar
 			this.showSolar()
-			break
-		case "update/daily":
-			this.state.Daily = msg.Daily
-			this.showDaily()
-			break
-		case "update/historical":
-			this.state.Historical = msg.Historical
-			this.showHistorical()
 			break
 		}
 	}
