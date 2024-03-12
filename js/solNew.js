@@ -39,14 +39,7 @@ class SolNew extends WebSocketController {
 		case ViewMode.ViewFull:
 			var ta = document.getElementById("system")
 			ta.value = ""
-			ta.value += "Max Voltage Supported (V):   " + this.state.System.MaxVolts + "\r\n"
-			ta.value += "Rated Charge Current (A):    " + this.state.System.ChargeAmps + "\r\n"
-			ta.value += "Rated Discharge Current (A): " + this.state.System.DischargeAmps + "\r\n"
-			ta.value += "Product Type:                " + this.state.System.ProductType + "\r\n"
-			ta.value += "Model:                       " + this.state.System.Model + "\r\n"
-			ta.value += "Software Version:            " + this.state.System.SWVersion + "\r\n"
-			ta.value += "Hardware Version:            " + this.state.System.HWVersion + "\r\n"
-			ta.value += "Serial:                      " + this.state.System.Serial
+			ta.value += "Configuration Mode:                      " + this.state.System.Config
 			break;
 		}
 	}
@@ -56,11 +49,9 @@ class SolNew extends WebSocketController {
 		case ViewMode.ViewFull:
 			var ta = document.getElementById("battery")
 			ta.value = ""
-			ta.value += "* Capacity SOC:              " + this.state.Battery.SOC + "\r\n"
+			ta.value += "* Percentage SOC:              " + this.state.Battery.Remaining + "\r\n"
 			ta.value += "* Voltage (V):               " + this.state.Battery.Volts + "\r\n"
-			ta.value += "* Current (A):               " + this.state.Battery.Amps + "\r\n"
-			ta.value += "* Temp (C):                  " + this.state.Battery.Temp + "\r\n"
-			ta.value += "* Charging State:            " + this.state.Battery.ChargeState
+			ta.value += "* Current (A):               " + this.state.Battery.Amps
 			break;
 		case ViewMode.ViewTile:
 			document.getElementById("battery-volts").innerText = this.state.Battery.Volts.toFixed(2)
@@ -75,9 +66,7 @@ class SolNew extends WebSocketController {
 			var ta = document.getElementById("load")
 			ta.value = ""
 			ta.value += "* Voltage (V):               " + this.state.LoadInfo.Volts + "\r\n"
-			ta.value += "* Current (A):               " + this.state.LoadInfo.Amps + "\r\n"
-			ta.value += "* Status:                    " + this.state.LoadInfo.Status + "\r\n"
-			ta.value += "* Brightness:                " + this.state.LoadInfo.Brightness
+			ta.value += "* Current (A):               " + this.state.LoadInfo.Amps
 			break;
 		case ViewMode.ViewTile:
 			document.getElementById("load-volts").innerText = this.state.LoadInfo.Volts.toFixed(2)
