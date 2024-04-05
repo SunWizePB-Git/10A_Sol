@@ -80,7 +80,7 @@ var targets = []string{"demo", "nano-rp2040"}
 func New(id, model, name string) dean.Thinger {
 	println("NEW SOLDEVICE")
 	s := &Sol{}
-	s.Device = device.New(id, model, name, targets).(*device.Device)
+	s.Device = device.New(id, model, name, fs, targets).(*device.Device)
 	s.Modbus = modbus.New(s)
 	s.Status = "OK"
 	return s
